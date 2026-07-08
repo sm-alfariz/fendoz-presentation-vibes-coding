@@ -1,22 +1,31 @@
+import argparse
 import http.server
 import socketserver
 import webbrowser
 
-# Set the port number
-PORT = 9500
+# Mengatur argumen baris perintah (CLI)
+parser = argparse.ArgumentParser(description="Jalankan static file server.")
+parser.add_argument(
+    "--port", 
+    type=int, 
+    default=8000, 
+    help="Nomor port untuk server lokal (default: 8000)"
+)
+args = parser.parse_args()
 
-# Set the handler to manage static files
+PORT = args.port
 Handler = http.server.SimpleHTTPRequestHandler
 
-print(f"Serving static files at http://localhost:{PORT}")
+print(f"Melayani file statis di http://localhost:{PORT}")
+print("Tekan Ctrl+C untuk menghentikan server.")
 
-# Automatically open your default web browser to the URL
+# Membuka browser secara otomatis
 webbrowser.open(f"http://localhost:{PORT}")
 
-# Start the local server
+# Menjalankan server
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\nStopping server.")
+        print("\nServer dihentikan.")
         httpd.server_close()
