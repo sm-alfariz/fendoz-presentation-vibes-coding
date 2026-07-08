@@ -1,3 +1,7 @@
-# fendoz-presentation-vibes-coding
+## fendoz-presentation-vibes-coding
 
-html presentation about Vibes Coding day one module
+my html presentation about Vibes Coding 
+run from local server with :
+
+`python server.py` server will run at port 8000 and automatic open your default browser 
+`python server.py --port 9500` if wanna use custom port 9500 
